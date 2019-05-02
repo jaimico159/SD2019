@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 4 elements to &apos;Integration/src/cristian&apos;&#x0A;- Original project: &apos;Cristian&apos;&#x0A;- Destination element: &apos;Integration/src/cristian&apos;&#x0A;- Original elements:&#x0A;     UtcClock.java&#x0A;     Clock.java&#x0A;     Main.java&#x0A;     Reloj.java" description="Copy compilation units" destination="=Integration/src&lt;cristian" element1="/src&lt;{UtcClock.java" element2="/src&lt;{Clock.java" element3="/src&lt;{Main.java" element4="/src&lt;{Reloj.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1553873441905" units="4" version="1.0"/>
+</session>

@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>0</y>
+      <w>1040</w>
+      <h>1420</h>
+    </coordinates>
+    <panel_attributes>::RegisterMessage
+--
+-numOfClients = 0: int
+~outputConnections = new ArrayList(): ArrayList
+-socket: ServerSocket
+-tempSocket: Socket
+-tempObjectOutputStream: ObjectOutputStream
+-serverFrame: JFrame
+-serverPanel: JPanel
+-lblClients: JLabel
+-txtNotifications: JTextArea
+-scrollPane: JScrollPane
+~server: LamportServer
+~socket: Socket
+~inputStream: ObjectInputStream
+~outputStream: ObjectOutputStream
+-socket: Socket
+-processNumber: int
+-time = 0: int
+~fromServer: ObjectInputStream
+~toServer: ObjectOutputStream
+-processFrame: JFrame
+-txtSendMessageTo: JTextField
+-clockPanel: JPanel
+-clockRatePanel: JPanel
+-btnIncrement: JButton
+-btnDecrement: JButton
+-clock: JLabel
+-messagePanel: JPanel
+-lblSendMessageTo: JLabel
+-btnSend: JButton
+-timer: Timer
+-notificationArea: JTextArea
+-sendMessage = new ActionListener() {
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        try {
+            CommunicationMessage message = new CommunicationMessage(processNumber, time, Integer.parseInt(txtSendMessageTo.getText()));
+            toServer.writeObject(message);
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(LamportProcess.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(LamportProcess.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}: ActionListener
+-incrementClockRate = new ActionListener() {
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        timer.setDelay(timer.getDelay() / 2);
+    }
+}: ActionListener
+-decrementClockRate = new ActionListener() {
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        timer.setDelay(timer.getDelay() * 2);
+    }
+}: ActionListener
+-clockTick = new ActionListener() {
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        clock.setText(String.valueOf(time));
+        time++;
+    }
+}: ActionListener
+~sendingProcessNumber: int
+~time: int
+~receivingProcessNumber: int
+~processNumber = 0: int
+--
+~LamportServer(): ctor
+~ServerThread(LamportServer server, Socket socket): ctor
+~LamportProcess(): ctor
+~CommunicationMessage(int sendingProcessNumber, int time, int receivingProcessNumber): ctor
+~RegisterMessage(int ProcessNumber): ctor
+~RegisterMessage(): ctor
++main(String args[]): void
++run(): void
+-updateClientCount(): void
++run(): void
+-initiateConnection(): int
+-Communicate(): void
++run(): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1060</x>
+      <y>0</y>
+      <w>380</w>
+      <h>580</h>
+    </coordinates>
+    <panel_attributes>::LamportProcess
+--
+-socket: java.net.Socket
+-processNumber: int
+-time: int
+~fromServer: java.io.ObjectInputStream
+~toServer: java.io.ObjectOutputStream
+-processFrame: javax.swing.JFrame
+-txtSendMessageTo: javax.swing.JTextField
+-clockPanel: javax.swing.JPanel
+-clockRatePanel: javax.swing.JPanel
+-btnIncrement: javax.swing.JButton
+-btnDecrement: javax.swing.JButton
+-clock: javax.swing.JLabel
+-messagePanel: javax.swing.JPanel
+-lblSendMessageTo: javax.swing.JLabel
+-btnSend: javax.swing.JButton
+-timer: javax.swing.Timer
+-notificationArea: javax.swing.JTextArea
+-sendMessage: java.awt.event.ActionListener
+-incrementClockRate: java.awt.event.ActionListener
+-decrementClockRate: java.awt.event.ActionListener
+-clockTick: java.awt.event.ActionListener
+--
+~LamportProcess(): ctor
+-initiateConnection(): int
+-Communicate(): void
++run(): void
+~access$0(LamportProcess): int
+~access$1(LamportProcess): int
+~access$2(LamportProcess): javax.swing.JTextField
+~access$3(LamportProcess): javax.swing.Timer
+~access$4(LamportProcess): javax.swing.JLabel
+~access$5(LamportProcess, int): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1450</x>
+      <y>0</y>
+      <w>410</w>
+      <h>280</h>
+    </coordinates>
+    <panel_attributes>::LamportServer
+--
+-numOfClients: int
+~outputConnections: java.util.ArrayList
+-socket: java.net.ServerSocket
+-tempSocket: java.net.Socket
+-tempObjectOutputStream: java.io.ObjectOutputStream
+-serverFrame: javax.swing.JFrame
+-serverPanel: javax.swing.JPanel
+-lblClients: javax.swing.JLabel
+-txtNotifications: javax.swing.JTextArea
+-scrollPane: javax.swing.JScrollPane
+--
+~LamportServer(): ctor
++run(): void
+-updateClientCount(): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1870</x>
+      <y>0</y>
+      <w>400</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>::ServerThread
+--
+~server: LamportServer
+~socket: java.net.Socket
+~inputStream: java.io.ObjectInputStream
+~outputStream: java.io.ObjectOutputStream
+--
+~ServerThread(LamportServer, java.net.Socket): ctor
++run(): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>1430</y>
+      <w>320</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>::CommunicationMessage
+--
+~sendingProcessNumber: int
+~time: int
+~receivingProcessNumber: int
+--
+~CommunicationMessage(int, int, int): ctor
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>340</x>
+      <y>1430</y>
+      <w>390</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>::LamportProcess$4
+--
+~this$0: LamportProcess
+--
+~LamportProcess$4(LamportProcess): ctor
++actionPerformed(java.awt.event.ActionEvent): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>740</x>
+      <y>1430</y>
+      <w>220</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>::RegisterMessage
+--
+~processNumber: int
+--
+~RegisterMessage(int): ctor
+~RegisterMessage(): ctor
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>970</x>
+      <y>1430</y>
+      <w>390</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>::LamportProcess$3
+--
+~this$0: LamportProcess
+--
+~LamportProcess$3(LamportProcess): ctor
++actionPerformed(java.awt.event.ActionEvent): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1370</x>
+      <y>1430</y>
+      <w>390</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>::LamportProcess$1
+--
+~this$0: LamportProcess
+--
+~LamportProcess$1(LamportProcess): ctor
++actionPerformed(java.awt.event.ActionEvent): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1770</x>
+      <y>1430</y>
+      <w>390</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>::LamportProcess$2
+--
+~this$0: LamportProcess
+--
+~LamportProcess$2(LamportProcess): ctor
++actionPerformed(java.awt.event.ActionEvent): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>1560</y>
+      <w>390</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>::LamportAlgorithm$1
+--
+--
+~LamportAlgorithm$1(): ctor
++actionPerformed(java.awt.event.ActionEvent): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>410</x>
+      <y>1560</y>
+      <w>240</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>::LamportAlgorithm
+--
+--
++LamportAlgorithm(): ctor
++main(java.lang.String[]): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>660</x>
+      <y>1560</y>
+      <w>130</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+::Message
+--
+--
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
